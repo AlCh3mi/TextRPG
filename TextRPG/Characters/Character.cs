@@ -73,10 +73,4 @@ namespace ConsoleApplication1.Characters
             Defense = defense;
         }
     }
-
-    public enum ClassType
-    {
-        Warrior,
-        Priest
-    }
 }

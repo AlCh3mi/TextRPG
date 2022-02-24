@@ -11,7 +11,7 @@ namespace ConsoleApplication1.Spells
         
         public override void CastSpell(Character caster, Character target)
         {
-            target.TakeDamage(Value);
+            target.TakeDamage(Value + caster.SpellPower);
         }
     }
 }

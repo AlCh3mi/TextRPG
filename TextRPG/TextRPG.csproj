@@ -40,6 +40,8 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Characters\Character.cs" />
+        <Compile Include="Characters\ClassType.cs" />
+        <Compile Include="Characters\Warrior.cs" />
         <Compile Include="GameMath.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
