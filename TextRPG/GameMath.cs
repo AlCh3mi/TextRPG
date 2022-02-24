@@ -14,5 +14,20 @@ namespace ConsoleApplication1
 
             return result;
         }
+        //Non Generic
+        /*
+        public static int Clamp(int value, int min, int max)
+        {
+            var result = value;
+            
+            if (result < min)
+                result = min;
+            
+            if (result > max)
+                result = max;
+
+            return result;
+        }
+        */
     }
 }

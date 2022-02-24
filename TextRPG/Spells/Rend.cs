@@ -10,7 +10,7 @@ namespace ConsoleApplication1.Spells
         }
         public override void CastSpell(Character caster, Character target)
         {
-            target.ArmourBuff(-Value);
+            target.ArmourModification(-Value);
             target.TakeDamage(Value);
         }
     }

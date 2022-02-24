@@ -1,43 +1,38 @@
 ﻿using System;
+using ConsoleApplication1.Spells;
 
 namespace ConsoleApplication1.Characters
 {
     public class Character
     {
-        public int MaxHealth = 100;
-
-        private int _currentHealth;
-        public int CurrentHealth
-        {
-            get => _currentHealth;
-            private set
-            {
-                _currentHealth = value;
-                
-                if (_currentHealth < 0)
-                    _currentHealth = 0;
-
-                if (_currentHealth > MaxHealth)
-                    _currentHealth = MaxHealth;
-            }
-        }
-
-        public int Damage = 10;
-        public int SpellPower = 1;
-        public int Defense = 0;
-        public ClassType ClassType;
         public string Name;
+        
+        public ClassType ClassType;
+        
+        public Health Health;
+        
+        public int Damage { get; private set; } = 10;
+        
+        public int Defense { get; private set; } = 0;
+        
+        public int SpellPower { get; private set; } = 1;
 
-        public bool IsDead => CurrentHealth <= 0;
+        public bool IsDead => Health.IsDead;
+
+        public Character(string name, ClassType classType,int maxHealth, int damage, int spellPower, int defense)
+        {
+            Name = name;
+            ClassType = classType;
+            Health = new Health(maxHealth);
+            Damage = damage;
+            SpellPower = spellPower;
+            Defense = defense;
+        }
 
         public void TakeDamage(int damage)
         {
             damage = damage - Defense;
-            
-            if (damage <= 0)
-                return;
-            
-            CurrentHealth -= damage;
+            Health.TakeDamage(damage);
         }
 
         public void DealDamage(Character enemy)
@@ -45,32 +40,53 @@ namespace ConsoleApplication1.Characters
             enemy.TakeDamage(Damage);
         }
 
-        public void CastSpell(Character enemy, int Spell)
+        public void CastSpell(Character enemy, Spell spell)
         {
-            enemy.TakeDamage(Spell * SpellPower);
+            spell.CastSpell(this, enemy);
         }
 
-        public void ArmourBuff(int armour)
+        public void ArmourModification(int armour)
         {
             Defense += armour;
-            Console.WriteLine($"{Name} reinforced his armour by {armour}");
+            Console.WriteLine($"{Name}'s armour has been modified by {armour}");
         }
 
         public void Heal(int healAmount)
         {
-            CurrentHealth += healAmount + SpellPower;
-            Console.WriteLine($"{Name} heals for {healAmount + SpellPower} health");
+            var healing = healAmount + SpellPower;
+            Health.Heal(healing);
+            Console.WriteLine($"{Name} heals for {healing} health");
         }
-
-        public Character(string name, ClassType classType,int maxHealth, int damage, int spellPower, int defense)
+        
+        public virtual void PlayerTurn(Character enemy)
         {
-            Name = name;
-            ClassType = classType;
-            MaxHealth = maxHealth;
-            CurrentHealth = maxHealth;
-            Damage = damage;
-            SpellPower = spellPower;
-            Defense = defense;
+            Console.WriteLine("1. Attack");
+            Console.WriteLine("2. Defend");
+            Console.Write("What would you like to do: ");
+            
+            var input = int.Parse(Console.ReadLine());
+
+            switch (input)
+            {
+                case 1:
+                    DealDamage(enemy);
+                    Console.WriteLine($"{Name} attacks {enemy.Name}");
+                    break;
+                case 2:
+                    ArmourModification(1);
+                    break;
+                default:
+                    Console.WriteLine("Something went wrong, this should not have happened");
+                    break;
+            }
+        }
+        
+        public void ShowStats()
+        {
+            Console.WriteLine(Name);
+            Console.WriteLine($"Health  : {Health.CurrentHealth}/{Health.MaxHealth}");
+            Console.WriteLine($"Damage  : {Damage}, SpellPower : {SpellPower}");
+            Console.WriteLine($"Defense : {Defense}");
         }
     }
 }
