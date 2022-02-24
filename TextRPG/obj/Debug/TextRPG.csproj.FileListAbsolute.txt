@@ -1,0 +1,7 @@
+D:\Projects\CSharp\TextRPG\TextRPG\bin\Debug\TextRPG.exe
+D:\Projects\CSharp\TextRPG\TextRPG\bin\Debug\TextRPG.pdb
+D:\Projects\CSharp\TextRPG\TextRPG\obj\Debug\TextRPG.csproj.AssemblyReference.cache
+D:\Projects\CSharp\TextRPG\TextRPG\obj\Debug\TextRPG.csproj.SuggestedBindingRedirects.cache
+D:\Projects\CSharp\TextRPG\TextRPG\obj\Debug\TextRPG.csproj.CoreCompileInputs.cache
+D:\Projects\CSharp\TextRPG\TextRPG\obj\Debug\TextRPG.exe
+D:\Projects\CSharp\TextRPG\TextRPG\obj\Debug\TextRPG.pdb

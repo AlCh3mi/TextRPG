@@ -29,7 +29,7 @@ namespace ConsoleApplication1.Characters
             Defense = defense;
         }
 
-        public void TakeDamage(int damage)
+        public virtual void TakeDamage(int damage)
         {
             damage = damage - Defense;
             Health.TakeDamage(damage);
@@ -40,9 +40,9 @@ namespace ConsoleApplication1.Characters
             enemy.TakeDamage(Damage);
         }
 
-        public void CastSpell(Character enemy, Spell spell)
+        public void CastSpell(Character target, Spell spell)
         {
-            spell.CastSpell(this, enemy);
+            spell.CastSpell(this, target);
         }
 
         public void ArmourModification(int armour)
