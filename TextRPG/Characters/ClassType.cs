@@ -3,6 +3,7 @@
     public enum ClassType
     {
         Warrior,
-        Priest
+        Priest,
+        Mage
     }
 }

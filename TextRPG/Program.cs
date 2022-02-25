@@ -9,6 +9,13 @@ namespace ConsoleApplication1
         {
             var warrior = new Warrior("Warrior", ClassType.Warrior, 100, 10, 1, 0);
             var priest = new Priest("Priest", ClassType.Priest, 80, 8, 3, 0);
+            var mage = new Mage("Mage", ClassType.Mage, 90, 3, 5, 0);
+
+            //Start with a character choosing thingiemajig.
+            //Didn't have time to get any further though
+            var player1 = ChooseClass.ChoosePlayer(1);
+            var player2 = ChooseClass.ChoosePlayer(2);
+
             
             var turnCounter = 0;
             while (true)
