@@ -7,16 +7,22 @@ namespace ConsoleApplication1
     {
         public static void Main()
         {
-            var warrior = new Warrior("Warrior", ClassType.Warrior, 100, 10, 1, 0);
-            var priest = new Priest("Priest", ClassType.Priest, 80, 8, 3, 0);
-            var mage = new Mage("Mage", ClassType.Mage, 90, 3, 5, 0);
-
-            //Start with a character choosing thingiemajig.
-            //Didn't have time to get any further though
-            var player1 = ChooseClass.ChoosePlayer(1);
-            var player2 = ChooseClass.ChoosePlayer(2);
-
+            //do you see how player1 and player2's Character creation are almost the same?
+            //and player turn are almost identical code too, we are repeating ourselves
+            //DRY - Dont Repeat Yourself
+            //todo: How can we improve this?
             
+            var chooseClass = new ChooseClass(); //create a new instance of the ChooseClass class. 
+            
+            Console.WriteLine("Player 1, please enter your name : ");
+            var p1Name = Console.ReadLine();
+            var player1 = chooseClass.CharacterSelect(1, p1Name); //Use the instance of ChooseClass to return a character to use with the correct type.
+            
+            Console.Clear();
+            Console.WriteLine("Player 2, please enter your name : ");
+            var p2Name = Console.ReadLine();
+            var player2 = chooseClass.CharacterSelect(2, p2Name);
+
             var turnCounter = 0;
             while (true)
             {
@@ -25,15 +31,15 @@ namespace ConsoleApplication1
                 Console.WriteLine("Turn #" +turnCounter);
                 
                 //Player1 Turn
-                warrior.ShowStats();
-                warrior.PlayerTurn(priest);
-                if (warrior.IsDead || priest.IsDead)
+                player1.ShowStats();
+                player1.PlayerTurn(player2);
+                if (player1.IsDead || player2.IsDead)
                     break;
                 
                 //Player2 Turn
-                priest.ShowStats();
-                priest.PlayerTurn(warrior);
-                if (warrior.IsDead || priest.IsDead)
+                player2.ShowStats();
+                player2.PlayerTurn(player1);
+                if (player1.IsDead || player2.IsDead)
                     break;
             
                 Console.WriteLine("Turn completed, press any key to continue");

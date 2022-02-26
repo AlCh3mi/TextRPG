@@ -5,10 +5,14 @@ namespace ConsoleApplication1.Characters
 {
     public class Warrior : Character
     {
-        public Warrior(string name, ClassType classType, int maxHealth, int damage, int spellPower, int defense) 
-            : base(name, classType, maxHealth, damage, spellPower, defense)
+        public Warrior(string name) : 
+            base(name, ClassType.Warrior, 100, 10, 1, 3)
         {
+            //This is the default stats for a warrior now.
+            //If we want the ability to change its starting stats,
+            //then we should create another constructor for that.
             
+            //ToDo: do the same for Priest.
         }
         
         public override void PlayerTurn(Character enemy)
