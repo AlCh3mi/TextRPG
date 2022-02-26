@@ -1,26 +1,40 @@
 ﻿using System;
+using System.Text;
 
 namespace ConsoleApplication1.Characters
 {
     internal class ChooseClass
     {
-        public Character CharacterSelect(int playerNumber, string playerName)
+        public Character CharacterSelect(int playerNumber)
         {
-            Console.Write($"Player {playerNumber}, choose your class!\n1. Warrior 2.Priest 3.Mage ");
-            var choice = Convert.ToInt32(Console.ReadLine());
+            
+            Console.Write($"Player {playerNumber}, please enter your name : ");
+            var name = Console.ReadLine();
+            Console.WriteLine();
+            Console.WriteLine($"Player {playerNumber}, choose your class!");
+            Console.WriteLine();
+            var sb = new StringBuilder();
+            sb.AppendLine("1. Warrior");
+            sb.AppendLine("2. Priest");
+            sb.AppendLine("3. Mage");
 
-            //ToDo: the same for Priest. Change their constructor to have the default values for this class. See Mage/Warrior class
+            Console.WriteLine(sb.ToString());
+            
+
+            var choice = Program.GetInput();
+
             switch (choice)
             {
                 case 1:
-                    return new Warrior(playerName);
+                    return new Warrior(name);
                 case 2:
-                    throw new NotImplementedException("Marcus hasn't set up the priest class yet-");
+                    return new Priest(name);
                 case 3:
-                    return new Mage(playerName);
+                    return new Mage(name);
                 default:
                     throw new Exception("Error 404: Character not found");
             }
+        
         }
     }
 }

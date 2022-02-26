@@ -8,11 +8,7 @@ namespace ConsoleApplication1.Characters
         public Warrior(string name) : 
             base(name, ClassType.Warrior, 100, 10, 1, 3)
         {
-            //This is the default stats for a warrior now.
-            //If we want the ability to change its starting stats,
-            //then we should create another constructor for that.
             
-            //ToDo: do the same for Priest.
         }
         
         public override void PlayerTurn(Character enemy)
@@ -23,7 +19,7 @@ namespace ConsoleApplication1.Characters
             
             Console.Write("What would you like to do: ");
             
-            var input = int.Parse(Console.ReadLine());
+            var input = Program.GetInput(1, 3);
 
             switch (input)
             {

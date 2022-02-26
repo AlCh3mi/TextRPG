@@ -5,8 +5,9 @@ namespace ConsoleApplication1.Characters
 {
     public class Priest : Character
     {
-        public Priest(string name, ClassType classType, int maxHealth, int damage, int spellPower, int defense) 
-            : base(name, classType, maxHealth, damage, spellPower, defense)
+        public Priest(string name) :
+            base(name, ClassType.Priest, 80, 8, 3, 0)
+
         {
             
         }
@@ -19,7 +20,7 @@ namespace ConsoleApplication1.Characters
             
             Console.Write("What would you like to do: ");
             
-            var input = int.Parse(Console.ReadLine());
+            var input = Program.GetInput(1, 3);
 
             switch (input)
             {
