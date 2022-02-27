@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Text;
+using ConsoleApplication1.Characters;
 
-namespace ConsoleApplication1.Characters
+namespace ConsoleApplication1
 {
     internal static class Input
     {

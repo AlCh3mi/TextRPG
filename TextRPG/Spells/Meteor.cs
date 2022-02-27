@@ -15,9 +15,6 @@ namespace ConsoleApplication1.Spells
             Console.WriteLine($"Meteor damages {target.Name} for {damage} damage");
         }
 
-        public Meteor(int value) : base(value)
-        {
-            
-        }
+        public Meteor(int value) : base(value) { }
     }
 }

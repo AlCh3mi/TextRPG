@@ -44,9 +44,5 @@ namespace ConsoleApplication1
             actingPlayer.ShowStats();
             actingPlayer.PlayerTurn(enemyPlayer);
         }
-        
-        
-        
-        
     }
 }

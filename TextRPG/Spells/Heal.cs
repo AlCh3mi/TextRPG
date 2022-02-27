@@ -7,10 +7,7 @@ namespace ConsoleApplication1.Spells
         public override string Name => "Heal";
         public override int ManaCost => 5;
         
-        public Heal(int value, int level = 1) : base(value)
-        {
-            Value = value;
-        }
+        public Heal(int value) : base(value) { }
 
         public override void CastSpell(Character caster, Character target)
         {

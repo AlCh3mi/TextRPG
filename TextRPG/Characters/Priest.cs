@@ -7,7 +7,7 @@ namespace ConsoleApplication1.Characters
     /// <summary>
     /// Priest gains Mana when damage is taken.
     /// </summary>
-    public class Priest : Character
+    public sealed class Priest : Character
     {
         public Priest(string name)
         {

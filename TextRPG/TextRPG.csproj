@@ -40,13 +40,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Characters\Character.cs" />
-    <Compile Include="Characters\Input.cs" />
     <Compile Include="Characters\ClassType.cs" />
     <Compile Include="Characters\Mage.cs" />
     <Compile Include="Characters\Priest.cs" />
     <Compile Include="Characters\Warrior.cs" />
     <Compile Include="GameMath.cs" />
     <Compile Include="Health.cs" />
+    <Compile Include="Input.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpellBook.cs" />

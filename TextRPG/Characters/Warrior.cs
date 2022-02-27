@@ -35,6 +35,7 @@ namespace ConsoleApplication1.Characters
         public override void TakeDamage(int damage)
         {
             damage = damage - Defense;
+            
             if(damage >= Health.CurrentHealth && !LastStandTriggered)
             {
                 Health.TakeDamage(Health.CurrentHealth - 1);
@@ -42,6 +43,7 @@ namespace ConsoleApplication1.Characters
                 Console.WriteLine("Warrior stages his LAST STAND!");
                 return;
             }
+            
             Health.TakeDamage(damage);
         }
     }

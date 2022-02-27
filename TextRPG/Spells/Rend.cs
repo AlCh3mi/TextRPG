@@ -13,8 +13,6 @@ namespace ConsoleApplication1.Spells
             target.TakeDamage(Value);
         }
 
-        public Rend(int value) : base(value)
-        {
-        }
+        public Rend(int value) : base(value) { }
     }
 }

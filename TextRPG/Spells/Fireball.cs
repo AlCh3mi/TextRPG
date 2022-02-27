@@ -14,9 +14,6 @@ namespace ConsoleApplication1.Spells
             Console.WriteLine("You can feel the smell of burnt ass hair cling to your nose!");
         }
 
-        public Fireball(int value) : base(value)
-        {
-            
-        }
+        public Fireball(int value) : base(value) { }
     }
 }

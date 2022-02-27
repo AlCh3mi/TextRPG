@@ -7,7 +7,7 @@ namespace ConsoleApplication1.Characters
     /// <summary>
     /// Passive: If Mage has less than 50% health, SpellPower is doubled!
     /// </summary>
-    public class Mage : Character
+    public sealed class Mage : Character
     {
         public Mage(string name)
         {
