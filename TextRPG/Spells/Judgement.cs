@@ -17,10 +17,8 @@ namespace ConsoleApplication1.Spells
         {
             Console.WriteLine($"{caster} casts Judgement!");
             target.TrueDamage(Value);
-            Console.WriteLine($"{target} takes {Value} True Damage");
             var healing = Value + caster.SpellPower;
             caster.Heal(healing);
-            Console.WriteLine($"{caster} recovers {healing} health from {Name}");
         }
     }
 }

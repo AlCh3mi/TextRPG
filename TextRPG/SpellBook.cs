@@ -63,6 +63,6 @@ namespace ConsoleApplication1
         }
 
         ///returns a value between 1 and the Spell Power of the owner of this SpellBook
-        public int SpellRng() => random.Next(1, Math.Max(Owner.SpellPower, 1));
+        public int SpellRng() => random.Next(1, Math.Max(Owner.SpellPower, 2));
     }
 }

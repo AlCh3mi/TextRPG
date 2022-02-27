@@ -16,7 +16,7 @@ namespace ConsoleApplication1.Spells
         public override void CastSpell(Character caster, Character target)
         {
             var amountOfShards = caster.SpellBook.SpellRng();
-            Console.WriteLine($"{caster} casts Blizzard on {target} and hits with {amountOfShards} shards");
+            Console.WriteLine($"{caster} casts {Name} on {target} and hits with {amountOfShards} shards");
             for (var i = 0; i < amountOfShards; i++)
             {
                 target.TakeDamage(Value + caster.SpellPower);

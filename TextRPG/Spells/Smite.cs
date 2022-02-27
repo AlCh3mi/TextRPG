@@ -16,8 +16,7 @@ namespace ConsoleApplication1.Spells
         public override void CastSpell(Character caster, Character target)
         {
             var damage = caster.Mana;
-            Console.WriteLine($"{caster} spends all his Mana to deal {damage} to himself and {target}");
-            caster.TakeDamage(damage);
+            Console.WriteLine($"{caster} spends all his Mana to deal {damage} to {target}");
             target.TakeDamage(damage);
             caster.ManaModify(-damage);
             

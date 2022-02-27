@@ -20,7 +20,6 @@ namespace ConsoleApplication1.Spells
             for (int i = 0; i < Value; i++)
             {
                 var damage = 1 + caster.SpellPower;
-                Console.WriteLine($"{Name} deals {damage} to {target}");
                 target.TrueDamage(damage);
             }
         }

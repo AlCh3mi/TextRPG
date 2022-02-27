@@ -9,7 +9,7 @@ namespace ConsoleApplication1.Characters
     /// </summary>
     public sealed class Priest : Character
     {
-        private int manaGain = 1;
+        private int manaGain = 2;
         public Priest(string name)
         {
             Name = name;

@@ -15,7 +15,7 @@ namespace ConsoleApplication1.Spells
         public override void CastSpell(Character caster, Character target)
         {
             target.TakeDamage(target.Mana);
-            Console.WriteLine($"{target} takes damage equal to his/her Mana({target.Mana})");
+            Console.WriteLine($"{target} takes damage equal to their Mana({target.Mana})");
         }
     }
 }

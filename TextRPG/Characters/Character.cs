@@ -15,9 +15,8 @@ namespace ConsoleApplication1.Characters
 
         public virtual void Heal(int healAmount)
         {
-            var healing = healAmount + SpellPower;
-            Health.Heal(healing);
-            Console.WriteLine($"{Name} heals for {healing} health");
+            Health.Heal(healAmount);
+            Console.WriteLine($"{Name} heals for {healAmount} health");
         }
 
         public virtual void TakeDamage(int damage)

@@ -20,7 +20,7 @@ namespace ConsoleApplication1.Characters
             SpellBook = new SpellBook(this, new List<Spell>
             {
                 new Fireball(4),
-                new Meteor(5),
+                new Meteor(3),
                 new GiftOfMana(10),
                 new ManaBurn(0),
                 new Blizzard(3)
