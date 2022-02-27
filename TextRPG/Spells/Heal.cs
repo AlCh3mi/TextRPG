@@ -13,7 +13,7 @@ namespace ConsoleApplication1.Spells
         public override void CastSpell(Character caster, Character target)
         {
             var healing = Value + caster.SpellPower;
-            Console.WriteLine($"{target} is healed for {healing}");
+            Console.WriteLine($"{caster} casts {Name} on {target}");
             target.Heal(healing);
         }
     }

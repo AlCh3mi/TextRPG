@@ -54,7 +54,7 @@ namespace ConsoleApplication1.Characters
             enemy.TakeDamage(Damage);
         }
 
-        public virtual void AddMana(int mana)
+        public virtual void ManaModify(int mana)
         {
             Mana += mana;
         }

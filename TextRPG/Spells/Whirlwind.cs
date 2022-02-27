@@ -5,7 +5,7 @@ namespace ConsoleApplication1.Spells
 {
     /// <summary>
     /// Instances of Damage: Value
-    /// Damage: 1 + Spell Power
+    /// Damage: TrueDMG : 1 + Spell Power
     /// </summary>
     public class Whirlwind : Spell
     {
@@ -21,7 +21,7 @@ namespace ConsoleApplication1.Spells
             {
                 var damage = 1 + caster.SpellPower;
                 Console.WriteLine($"{Name} deals {damage} to {target}");
-                target.TakeDamage(damage);
+                target.TrueDamage(damage);
             }
         }
     }

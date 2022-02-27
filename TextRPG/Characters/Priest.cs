@@ -30,11 +30,21 @@ namespace ConsoleApplication1.Characters
         public override void TakeDamage(int damage)
         {
             base.TakeDamage(damage);
+            PassiveManaGain();
+        }
 
-            if (IsDead) 
+        public override void TrueDamage(int trueDamage)
+        {
+            base.TrueDamage(trueDamage);
+            PassiveManaGain();
+        }
+        
+        private void PassiveManaGain()
+        {
+            if (IsDead)
                 return;
-            
-            Mana += manaGain;
+
+            ManaModify(1);
             Console.WriteLine($"{Name} gained {manaGain} mana from passive");
         }
     }

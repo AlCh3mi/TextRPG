@@ -19,7 +19,7 @@ namespace ConsoleApplication1.Spells
             Console.WriteLine($"{caster} spends all his Mana to deal {damage} to himself and {target}");
             caster.TakeDamage(damage);
             target.TakeDamage(damage);
-            caster.AddMana(-damage);
+            caster.ManaModify(-damage);
             
         }
     }

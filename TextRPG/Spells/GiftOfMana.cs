@@ -16,7 +16,7 @@ namespace ConsoleApplication1.Spells
         {
             var manaToAdd = Value + caster.SpellPower;
             Console.WriteLine($"Surrounding magical energy is channeled towards {target}. Adds {manaToAdd} Mana");
-            target.AddMana(manaToAdd);
+            target.ManaModify(manaToAdd);
         }
     }
 }

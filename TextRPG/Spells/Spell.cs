@@ -5,10 +5,10 @@ namespace ConsoleApplication1.Spells
     public abstract class Spell
     {
         public abstract string Name { get; }
-        public int Value { get; protected set; }
+        protected int Value { get; set; }
         public abstract int ManaCost { get; }
-        
-        public Spell(int value)
+
+        protected Spell(int value)
         {
             Value = value;
         }
