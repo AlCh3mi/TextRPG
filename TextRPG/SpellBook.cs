@@ -11,10 +11,13 @@ namespace ConsoleApplication1
 
         private readonly Character Owner;
 
+        private Random random;
+
         public SpellBook(Character owner, List<Spell> spells)
         {
             this.Owner = owner;
             this.Spells = spells;
+            random = new Random();
         }
         
         public bool CanAffordAnySpell()
@@ -57,6 +60,12 @@ namespace ConsoleApplication1
             {
                 Console.WriteLine($"{i+1}. {Spells[i].Name}({Spells[i].ManaCost} mana)");
             }
+        }
+
+        ///returns a value between 1 and the Spell Power of the owner of this SpellBook
+        public int SpellRng()
+        {
+            return random.Next(1, Owner.SpellPower);
         }
     }
 }

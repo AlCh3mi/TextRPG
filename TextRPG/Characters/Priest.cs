@@ -9,6 +9,7 @@ namespace ConsoleApplication1.Characters
     /// </summary>
     public sealed class Priest : Character
     {
+        private int manaGain = 1;
         public Priest(string name)
         {
             Name = name;
@@ -21,7 +22,8 @@ namespace ConsoleApplication1.Characters
             SpellBook = new SpellBook(this, new List<Spell>()
             {
                 new Heal(10),
-                new Fireball(3)
+                new Judgement(8),
+                new Smite(0)
             });
         }
 
@@ -32,8 +34,8 @@ namespace ConsoleApplication1.Characters
             if (IsDead) 
                 return;
             
-            Mana++;
-            Console.WriteLine($"{Name} gained 1 mana from passive");
+            Mana += manaGain;
+            Console.WriteLine($"{Name} gained {manaGain} mana from passive");
         }
     }
 }

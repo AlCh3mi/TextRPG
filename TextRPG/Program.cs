@@ -27,6 +27,9 @@ namespace ConsoleApplication1
                 if (GameOver)
                     break;
 
+                Console.WriteLine("End of Turn, press any key to continue..");
+                Console.ReadKey();
+                
                 Console.Clear();
                 Console.WriteLine("Turn #" + turnCounter);
                 
@@ -34,7 +37,7 @@ namespace ConsoleApplication1
                 if (GameOver)
                     break;
 
-                Console.WriteLine("Turn completed, press any key to continue");
+                Console.WriteLine("End of Turn, press any key to continue..");
                 Console.ReadKey();
             }
         }

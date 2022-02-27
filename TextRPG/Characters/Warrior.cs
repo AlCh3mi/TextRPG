@@ -5,11 +5,15 @@ using ConsoleApplication1.Spells;
 namespace ConsoleApplication1.Characters
 {
     /// <summary>
-    /// Warrior avoids death 1 time, and his armour cannot be reduced below 0
+    /// Warrior has LAST STAND(avoids death 1 time)
+    /// his armour cannot be reduced below {minArmour}
+    /// Gains twice as much Armour
     /// </summary>
     public sealed class Warrior : Character
     {
         private bool LastStandTriggered { get; set; }
+        private int minArmour = 3;
+        private int maxArmour = 15;
         
         public Warrior(string name) 
         {
@@ -18,18 +22,32 @@ namespace ConsoleApplication1.Characters
             Health = new Health(100);
             Damage = 10;
             SpellPower = 1;
-            Defense = 3;
-            Mana = 10;
+            Defense = minArmour;
+            Mana = 12;
             SpellBook = new SpellBook(this, new List<Spell>()
             {
                 new Rend(4),
+                new Whirlwind(5),
+                new DrumsOfWar(1)
             });
         }
 
         public override int Defense
         {
             get => _defense; 
-            protected set => GameMath.Clamp(value, 0, 15);
+            protected set => GameMath.Clamp(value, minArmour, maxArmour);
+        }
+
+        public override void ArmourModification(int armour)
+        {
+            if(armour > 0)
+            {
+                base.ArmourModification(armour * 2);
+                return;
+            }
+
+            base.ArmourModification(-armour);
+            
         }
 
         public override void TakeDamage(int damage)

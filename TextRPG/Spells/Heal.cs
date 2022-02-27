@@ -1,3 +1,4 @@
+using System;
 using ConsoleApplication1.Characters;
 
 namespace ConsoleApplication1.Spells
@@ -11,7 +12,9 @@ namespace ConsoleApplication1.Spells
 
         public override void CastSpell(Character caster, Character target)
         {
-            target.Heal(Value + (caster.SpellPower));
+            var healing = Value + caster.SpellPower;
+            Console.WriteLine($"{target} is healed for {healing}");
+            target.Heal(healing);
         }
     }
 }

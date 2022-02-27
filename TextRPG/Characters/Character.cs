@@ -13,6 +13,11 @@ namespace ConsoleApplication1.Characters
         
         public int Damage { get; protected set; }
 
+        public virtual void DamageModify(int damage)
+        {
+            Damage += damage;
+        }
+
         protected int _defense;
         public virtual int Defense
         {
@@ -21,6 +26,11 @@ namespace ConsoleApplication1.Characters
         }
 
         public virtual int SpellPower { get; protected set; } = 1;
+
+        public virtual void SpellPowerModify(int spellPower)
+        {
+            SpellPower += spellPower;
+        } 
         
         public int Mana { get; protected set; }
 
@@ -34,9 +44,19 @@ namespace ConsoleApplication1.Characters
             Health.TakeDamage(damage);
         }
 
+        public virtual void TrueDamage(int trueDamage)
+        {
+            Health.TakeDamage(trueDamage);
+        }
+
         public virtual void DealDamage(Character enemy)
         {
             enemy.TakeDamage(Damage);
+        }
+
+        public virtual void AddMana(int mana)
+        {
+            Mana += mana;
         }
 
         public virtual void CastSpell(Character target, Spell spell)
@@ -57,7 +77,10 @@ namespace ConsoleApplication1.Characters
         public virtual void ArmourModification(int armour)
         {
             Defense += armour;
-            Console.WriteLine($"{Name}'s armour has been modified by {armour}");
+            
+            Console.WriteLine(armour > 0 ? 
+                $"{Name}'s armour has been increased by {armour}" :
+                $"{Name}'s armour has been reduced by {armour}");
         }
 
         public virtual void Heal(int healAmount)

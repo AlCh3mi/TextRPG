@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ConsoleApplication1.Spells;
 
 namespace ConsoleApplication1.Characters
@@ -18,10 +17,13 @@ namespace ConsoleApplication1.Characters
             SpellPower = 5;
             Defense = 0;
             Mana = 25;
-            SpellBook = new SpellBook(this, new List<Spell>()
+            SpellBook = new SpellBook(this, new List<Spell>
             {
                 new Fireball(4),
-                new Meteor(5)
+                new Meteor(5),
+                new GiftOfMana(10),
+                new ManaBurn(0),
+                new Blizzard(3)
             });
             
         }
@@ -35,7 +37,6 @@ namespace ConsoleApplication1.Characters
                 if (Health.CurrentHealth > Health.MaxHealth / 2) 
                     return spellPower;
                 
-                Console.WriteLine($"{Name}'s has double Spell Power when below 50% life");
                 return spellPower * 2;
 
             }
