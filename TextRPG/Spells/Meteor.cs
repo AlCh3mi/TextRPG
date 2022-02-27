@@ -16,8 +16,8 @@ namespace ConsoleApplication1.Spells
         public override void CastSpell(Character caster, Character target)
         {
             var damage = Value * caster.SpellPower;
-            target.TakeDamage(damage);
             Console.WriteLine($"{Name} damages {target.Name} for {damage} damage");
+            target.TakeDamage(damage);
         }
     }
 }

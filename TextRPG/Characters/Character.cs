@@ -24,10 +24,14 @@ namespace ConsoleApplication1.Characters
         {
             damage = damage - Defense;
             Health.TakeDamage(damage);
+            Console.WriteLine($"{Name} took {damage} Damage");
         }
 
-        public virtual void TrueDamage(int trueDamage) => Health.TakeDamage(trueDamage);
-
+        public virtual void TrueDamage(int trueDamage)
+        {
+            Health.TakeDamage(trueDamage);
+            Console.WriteLine($"{Name} took {trueDamage} True Damage (Armour was ignored)");
+        }
 
         public bool IsDead => Health.IsDead;
 
@@ -69,15 +73,19 @@ namespace ConsoleApplication1.Characters
         public int Mana { get; protected set; }
         public virtual void ManaModify(int mana) => Mana += mana;
 
-        protected int spellPower = 1;
+        protected int _spellPower = 1;
 
         public virtual int SpellPower
         {
-            get => spellPower;
-            protected set => spellPower = value;
+            get => _spellPower;
+            protected set => _spellPower = value;
         }
 
-        public virtual void SpellPowerModify(int spellPower) => SpellPower += spellPower;
+        public virtual void SpellPowerModify(int spellPwr)
+        {
+            SpellPower += spellPwr;
+            Console.WriteLine($"{this}'s Spell Power was modified by {spellPwr}");
+        }
         
         #endregion
         
@@ -111,8 +119,8 @@ namespace ConsoleApplication1.Characters
             {
                 case 1:
                     var attackTarget = Input.ChooseTarget(this, enemy);
-                    DealDamage(attackTarget);
                     Console.WriteLine($"{Name} attacks {enemy.Name}");
+                    DealDamage(attackTarget);
                     break;
                 case 2:
                     ArmourModification(1);

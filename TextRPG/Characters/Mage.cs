@@ -33,12 +33,12 @@ namespace ConsoleApplication1.Characters
             get
             {
                 if (Health.CurrentHealth > Health.MaxHealth / 2) 
-                    return spellPower;
+                    return _spellPower;
                 
-                return spellPower * 2;
+                return _spellPower * 2;
 
             }
-            protected set => spellPower = value;
+            protected set => _spellPower = value;
         }
     }
 }

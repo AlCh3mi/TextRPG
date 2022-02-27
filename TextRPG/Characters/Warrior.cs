@@ -35,7 +35,7 @@ namespace ConsoleApplication1.Characters
         public override int Defense
         {
             get => _defense; 
-            protected set => GameMath.Clamp(value, minArmour, maxArmour);
+            protected set => _defense = GameMath.Clamp(value, minArmour, maxArmour);
         }
 
         public override void ArmourModification(int armour)
@@ -60,8 +60,7 @@ namespace ConsoleApplication1.Characters
                 Console.WriteLine("Warrior stages his LAST STAND!");
                 return;
             }
-            
-            Health.TakeDamage(damage);
+            base.TakeDamage(damage);
         }
     }
 }
