@@ -27,9 +27,7 @@ namespace ConsoleApplication1.Characters
             });
             
         }
-        
-        private int spellPower;
-        
+
         public override int SpellPower
         {
             get

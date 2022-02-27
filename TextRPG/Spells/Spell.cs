@@ -14,5 +14,7 @@ namespace ConsoleApplication1.Spells
         }
 
         public abstract void CastSpell(Character caster, Character target);
+
+        public override string ToString() => $"{Name} ({ManaCost} Mana)";
     }
 }

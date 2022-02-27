@@ -26,7 +26,7 @@ namespace ConsoleApplication1.Characters
             Mana = 12;
             SpellBook = new SpellBook(this, new List<Spell>()
             {
-                new Rend(4),
+                new Rend(2),
                 new Whirlwind(5),
                 new DrumsOfWar(1)
             });
@@ -47,7 +47,6 @@ namespace ConsoleApplication1.Characters
             }
 
             base.ArmourModification(-armour);
-            
         }
 
         public override void TakeDamage(int damage)

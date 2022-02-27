@@ -6,37 +6,19 @@ namespace ConsoleApplication1.Characters
     public abstract class Character
     {
         public string Name;
-        
+
         public ClassType ClassType;
-        
+
+        #region Health
+
         public Health Health;
-        
-        public int Damage { get; protected set; }
 
-        public virtual void DamageModify(int damage)
+        public virtual void Heal(int healAmount)
         {
-            Damage += damage;
+            var healing = healAmount + SpellPower;
+            Health.Heal(healing);
+            Console.WriteLine($"{Name} heals for {healing} health");
         }
-
-        protected int _defense;
-        public virtual int Defense
-        {
-            get => _defense; 
-            protected set => _defense = GameMath.Clamp(value, -10, 10);
-        }
-
-        public virtual int SpellPower { get; protected set; } = 1;
-
-        public virtual void SpellPowerModify(int spellPower)
-        {
-            SpellPower += spellPower;
-        } 
-        
-        public int Mana { get; protected set; }
-
-        public SpellBook SpellBook { get; protected set; }
-        
-        public bool IsDead => Health.IsDead;
 
         public virtual void TakeDamage(int damage)
         {
@@ -44,22 +26,63 @@ namespace ConsoleApplication1.Characters
             Health.TakeDamage(damage);
         }
 
-        public virtual void TrueDamage(int trueDamage)
+        public virtual void TrueDamage(int trueDamage) => Health.TakeDamage(trueDamage);
+
+
+        public bool IsDead => Health.IsDead;
+
+        #endregion
+
+        #region Defense
+
+        protected int _defense;
+
+        public virtual int Defense
         {
-            Health.TakeDamage(trueDamage);
+            get => _defense;
+            protected set => _defense = GameMath.Clamp(value, -10, 10);
         }
 
-        public virtual void DealDamage(Character enemy)
+        public virtual void ArmourModification(int armour)
         {
-            enemy.TakeDamage(Damage);
+            Defense += armour;
+
+            Console.WriteLine(armour > 0
+                ? $"{Name}'s armour has been increased by {armour}"
+                : $"{Name}'s armour has been reduced by {armour}");
         }
 
-        public virtual void ManaModify(int mana)
+        #endregion
+
+        #region Damage
+
+        public int Damage { get; protected set; }
+
+        public virtual void DamageModify(int damage) => Damage += damage;
+
+        public virtual void DealDamage(Character enemy) => enemy.TakeDamage(Damage);
+
+        #endregion
+
+        #region Magic
+        
+        public int Mana { get; protected set; }
+        public virtual void ManaModify(int mana) => Mana += mana;
+
+        protected int spellPower = 1;
+
+        public virtual int SpellPower
         {
-            Mana += mana;
+            get => spellPower;
+            protected set => spellPower = value;
         }
 
-        public virtual void CastSpell(Character target, Spell spell)
+        public virtual void SpellPowerModify(int spellPower) => SpellPower += spellPower;
+        
+        #endregion
+        
+        public SpellBook SpellBook { get; protected set; }
+        protected virtual void CastSpell(Character target, Spell spell)
         {
             if (spell == null)
                 return;
@@ -72,22 +95,6 @@ namespace ConsoleApplication1.Characters
 
             Mana -= spell.ManaCost;
             spell.CastSpell(this, target);
-        }
-
-        public virtual void ArmourModification(int armour)
-        {
-            Defense += armour;
-            
-            Console.WriteLine(armour > 0 ? 
-                $"{Name}'s armour has been increased by {armour}" :
-                $"{Name}'s armour has been reduced by {armour}");
-        }
-
-        public virtual void Heal(int healAmount)
-        {
-            var healing = healAmount + SpellPower;
-            Health.Heal(healing);
-            Console.WriteLine($"{Name} heals for {healing} health");
         }
 
         public void PlayerTurn(Character enemy)
@@ -117,7 +124,7 @@ namespace ConsoleApplication1.Characters
                         PlayerTurn(enemy);
                         break;
                     }
-                    
+
                     var spell = SpellBook.ChooseSpell();
                     var spellTarget = Input.ChooseTarget(this, enemy);
                     CastSpell(spellTarget, spell);
@@ -126,7 +133,7 @@ namespace ConsoleApplication1.Characters
                     throw new Exception("Invalid Character Action.");
             }
         }
-        
+
         public void ShowStats()
         {
             Console.WriteLine($"{Name} ({ClassType})");

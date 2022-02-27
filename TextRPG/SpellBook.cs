@@ -58,14 +58,11 @@ namespace ConsoleApplication1
         {
             for (int i = 0; i < Spells.Count; i++)
             {
-                Console.WriteLine($"{i+1}. {Spells[i].Name}({Spells[i].ManaCost} mana)");
+                Console.WriteLine($"{i+1}. {Spells[i]}");
             }
         }
 
         ///returns a value between 1 and the Spell Power of the owner of this SpellBook
-        public int SpellRng()
-        {
-            return random.Next(1, Owner.SpellPower);
-        }
+        public int SpellRng() => random.Next(1, Math.Min(Owner.SpellPower, 1));
     }
 }

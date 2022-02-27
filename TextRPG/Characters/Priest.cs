@@ -44,7 +44,7 @@ namespace ConsoleApplication1.Characters
             if (IsDead)
                 return;
 
-            ManaModify(1);
+            ManaModify(manaGain);
             Console.WriteLine($"{Name} gained {manaGain} mana from passive");
         }
     }
