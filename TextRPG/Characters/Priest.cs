@@ -1,43 +1,39 @@
 ﻿using System;
+using System.Collections.Generic;
 using ConsoleApplication1.Spells;
 
 namespace ConsoleApplication1.Characters
 {
+    /// <summary>
+    /// Priest gains Mana when damage is taken.
+    /// </summary>
     public class Priest : Character
     {
-        public Priest(string name) :
-            base(name, ClassType.Priest, 80, 8, 3, 0)
-
+        public Priest(string name)
         {
-            
+            Name = name;
+            ClassType = ClassType.Priest;
+            Health = new Health(80);
+            Damage = 8;
+            SpellPower = 3;
+            Defense = 1;
+            Mana = 20;
+            SpellBook = new SpellBook(this, new List<Spell>()
+            {
+                new Heal(10),
+                new Fireball(3)
+            });
         }
 
-        public override void PlayerTurn(Character enemy)
+        public override void TakeDamage(int damage)
         {
-            Console.WriteLine("1. Attack");
-            Console.WriteLine("2. Defend");
-            Console.WriteLine("3. Heal");
-            
-            Console.Write("What would you like to do: ");
-            
-            var input = Program.GetInput(1, 3);
+            base.TakeDamage(damage);
 
-            switch (input)
-            {
-                case 1:
-                    DealDamage(enemy);
-                    Console.WriteLine($"{Name} attacks {enemy.Name}");
-                    break;
-                case 2:
-                    ArmourModification(1);
-                    break;
-                case 3:
-                    CastSpell(this, new Heal(7));
-                    break;
-                default:
-                    Console.WriteLine("Something went wrong, this should not have happened");
-                    break;
-            }
+            if (IsDead) 
+                return;
+            
+            Mana++;
+            Console.WriteLine($"{Name} gained 1 mana from passive");
         }
     }
 }

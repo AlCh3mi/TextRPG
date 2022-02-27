@@ -1,44 +1,48 @@
 ﻿using System;
+using System.Collections.Generic;
 using ConsoleApplication1.Spells;
 
 namespace ConsoleApplication1.Characters
 {
-    public class Warrior : Character
+    /// <summary>
+    /// Warrior avoids death 1 time, and his armour cannot be reduced below 0
+    /// </summary>
+    public sealed class Warrior : Character
     {
-        public Warrior(string name) : 
-            base(name, ClassType.Warrior, 100, 10, 1, 3)
-        {
-            
-        }
+        private bool LastStandTriggered { get; set; }
         
-        public override void PlayerTurn(Character enemy)
+        public Warrior(string name) 
         {
-            Console.WriteLine("1. Attack");
-            Console.WriteLine("2. Defend");
-            Console.WriteLine("3. Rend");
-            
-            Console.Write("What would you like to do: ");
-            
-            var input = Program.GetInput(1, 3);
-
-            switch (input)
+            Name = name;
+            ClassType = ClassType.Warrior;
+            Health = new Health(100);
+            Damage = 10;
+            SpellPower = 1;
+            Defense = 3;
+            Mana = 10;
+            SpellBook = new SpellBook(this, new List<Spell>()
             {
-                case 1:
-                    DealDamage(enemy);
-                    Console.WriteLine($"{Name} attacks {enemy.Name}");
-                    break;
-                case 2:
-                    ArmourModification(1);
-                    break;
-                case 3:
-                    CastSpell(enemy, new Rend(2));
-                    break;
-                default:
-                    Console.WriteLine("Something went wrong, this should not have happened");
-                    break;
-            }
+                new Rend(4),
+            });
         }
-        
-        
+
+        public override int Defense
+        {
+            get => _defense; 
+            protected set => GameMath.Clamp(value, 0, 15);
+        }
+
+        public override void TakeDamage(int damage)
+        {
+            damage = damage - Defense;
+            if(damage >= Health.CurrentHealth && !LastStandTriggered)
+            {
+                Health.TakeDamage(Health.CurrentHealth - 1);
+                LastStandTriggered = true;
+                Console.WriteLine("Warrior stages his LAST STAND!");
+                return;
+            }
+            Health.TakeDamage(damage);
+        }
     }
 }

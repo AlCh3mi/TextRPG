@@ -4,17 +4,17 @@ namespace ConsoleApplication1.Spells
 {
     public class Heal : Spell
     {
-        public int Level = 1;
+        public override string Name => "Heal";
+        public override int ManaCost => 5;
         
-        public Heal(int value, int level = 1)
+        public Heal(int value, int level = 1) : base(value)
         {
-            Level = level;
             Value = value;
         }
-        
+
         public override void CastSpell(Character caster, Character target)
         {
-            target.Heal(Value + (caster.SpellPower * Level));
+            target.Heal(Value + (caster.SpellPower));
         }
     }
 }

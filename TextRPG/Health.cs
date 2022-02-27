@@ -2,15 +2,16 @@
 {
     public class Health
     {
-        public int MaxHealth { get; private set; }
+        public bool IsDead => CurrentHealth <= 0;
         
+        private int _currentHealth;
         public int CurrentHealth
         {
             get => _currentHealth;
             private set => _currentHealth = GameMath.Clamp(value, 0, MaxHealth);
         }
-        
-        private int _currentHealth;
+
+        public int MaxHealth { get; private set; }
 
         public void SetMaxHealth(int maxHealth)
         {
@@ -36,12 +37,16 @@
             CurrentHealth += healing;
         }
 
-        public bool IsDead => CurrentHealth <= 0;
-
         public Health(int maxHealth)
         {
             MaxHealth = maxHealth;
             CurrentHealth = maxHealth;
+        }
+
+        public Health(int currentHealth, int maxHealth)
+        {
+            MaxHealth = maxHealth;
+            CurrentHealth = currentHealth;
         }
     }
 }
